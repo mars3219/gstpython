@@ -1,0 +1,57 @@
+addict
+dataclasses
+json_tricks
+loguru
+regex
+shapely==1.8.5
+yapf
+scikit-learn==0.24.2
+timm
+ftfy
+
+# bytetrack
+lap
+Cython
+cython-bbox
+
+# super gradient v 3.3.0 requirements
+tqdm>=4.57.0
+boto3>=1.17.15
+jsonschema>=3.2.0
+Deprecated>=1.2.11
+scipy>=1.6.1
+matplotlib>=3.3.4
+psutil>=5.8.0
+tensorboard>=2.4.1
+setuptools>=21.0.0
+coverage~=5.3.1
+sphinx~=4.0.2
+sphinx-rtd-theme
+torchmetrics==0.8
+hydra-core>=1.2.0
+omegaconf
+onnxruntime==1.13.1
+onnxruntime-gpu==1.16.1
+onnx==1.13.0
+pillow>=5.3.0,!=8.3
+pip-tools>=6.12.1
+pyparsing==2.4.5
+einops==0.3.2
+pycocotools==2.0.6
+protobuf==3.20.3
+treelib==1.6.1
+termcolor==1.1.0
+packaging>=20.4
+# not directly required, pinned by Snyk to avoid a vulnerability
+wheel>=0.38.0
+# not directly required, pinned by Snyk to avoid a vulnerability
+pygments>=2.7.4
+stringcase>=1.2.0
+numpy<=1.23
+rapidfuzz
+json-tricks==3.16.1
+onnx-simplifier>=0.3.6,<1.0
+data-gradients>=0.2.1
+tensorrt==8.6.1
+pycuda
+colored==1.4.4

@@ -1,0 +1,6 @@
+{
+    "python.analysis.extraPaths": [
+        "./stream/test_",
+        "./stream/test_"
+    ]
+}
