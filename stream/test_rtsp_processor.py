@@ -71,7 +71,7 @@ if __name__ == "__main__":
         "rtsp://127.0.0.1:8562/stream",
         # "rtsp://127.0.0.1:8570/stream"
     ]
-    IMG_WIDTH = 1280
+    IMG_WIDTH = 1280 # 출력할 클립 해상도 설정값
     IMG_HEIGHT = 720
     SFPS = 2  # C++ 코드에서 설정한 1초당 저장할 프레임 수
     process_frames(RTSP_URLS, IMG_WIDTH, IMG_HEIGHT, SFPS)
