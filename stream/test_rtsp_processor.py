@@ -27,9 +27,9 @@ def save_frame(image_data, channel_id, timestamp):
     image_array = image_array.reshape((IMG_HEIGHT, IMG_WIDTH, 3))  # 이미지 크기와 채널에 맞게 조정
     cv2.imwrite(file_path, image_array)
 
-def process_frames(rtsp_urls, width, height, fps):
+def process_frames(rtsp_urls, width, height, sfps):
     # RTSP 스트림 설정
-    sp.set_stream_config(rtsp_urls, width, height, fps)
+    sp.set_stream_config(rtsp_urls, width, height, sfps)
     sp.start_stream_processing()
     create_output_directory()
 
@@ -47,11 +47,11 @@ def process_frames(rtsp_urls, width, height, fps):
 
             # 저장된 이미지와 메타데이터를 기반으로 이미지 저장
             save_frame(image_data, channel_id, timestamp)
-            print(f"Saved frame from channel {channel_id} at {time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(timestamp))}")
+            print(f"Saved frame from CH-{channel_id + 1:02} at {time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(timestamp))}")
 
     # 스레드 생성 및 시작
     threads = []
-    for _ in range(fps):  # fps 값에 따라 여러 스레드를 생성
+    for _ in range(len(RTSP_URLS)):
         t = threading.Thread(target=frame_saver)
         t.start()
         threads.append(t)
@@ -65,12 +65,13 @@ def process_frames(rtsp_urls, width, height, fps):
         sp.stop_stream_processing()
 
 if __name__ == "__main__":
-    # 사용자 설정에 따라 width, height, fps 값을 지정합니다.
+    # 사용자 설정에 따라 width, height, save fps 값을 지정합니다.
     RTSP_URLS = [
         "rtsp://127.0.0.1:8554/stream",
-        "rtsp://127.0.0.1:8562/stream"
+        "rtsp://127.0.0.1:8562/stream",
+        # "rtsp://127.0.0.1:8570/stream"
     ]
     IMG_WIDTH = 1280
     IMG_HEIGHT = 720
-    FPS = 2  # C++ 코드에서 설정한 1초당 저장할 프레임 수
-    process_frames(RTSP_URLS, IMG_WIDTH, IMG_HEIGHT, FPS)
+    SFPS = 2  # C++ 코드에서 설정한 1초당 저장할 프레임 수
+    process_frames(RTSP_URLS, IMG_WIDTH, IMG_HEIGHT, SFPS)
